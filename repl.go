@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"os"
 	"fmt"
+	"github.com/abdullahshahad-w/pokedex-go/internal/pokeapi"
 )
 
 func cleanInput(text string) []string {
@@ -23,7 +24,7 @@ func cleanInput(text string) []string {
 	return result
 }
 
-func replLoop(reg *config) {
+func replLoop(reg *pokeapi.Config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for ;; {
@@ -40,10 +41,10 @@ func replLoop(reg *config) {
 
 		command := cleanedInput[0]
 
-		if val, ok := reg.commandRegistry[command]; !ok {
+		if val, ok := reg.CommandRegistry[command]; !ok {
 			fmt.Println("Unknown command")
 		} else {
-			err := val.callback(reg)
+			err := val.Callback(reg)
 			if err != nil {
 				fmt.Printf("error calling callback function for command: %s, error: %v", command, err)
 			}
