@@ -41,10 +41,18 @@ func replLoop(reg *pokeapi.Config) {
 
 		command := cleanedInput[0]
 
+		var arg string
+
+		if len(cleanedInput) == 2{
+			arg = cleanedInput[1]
+		} else {
+			arg = ""
+		}
+
 		if val, ok := reg.CommandRegistry[command]; !ok {
 			fmt.Println("Unknown command")
 		} else {
-			err := val.Callback(reg)
+			err := val.Callback(reg, arg)
 			if err != nil {
 				fmt.Printf("error calling callback function for command: %s, error: %v", command, err)
 			}

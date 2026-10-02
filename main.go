@@ -29,8 +29,29 @@ func main() {
 				Description: "Shows the previous locations of the Pokemon world",
 				Callback: pokeapi.CommandMapb,
 			},
+			"explore": {
+				Name: "explore",
+				Description: "Shows pokemons in the area",
+				Callback: pokeapi.CommandExplore,
+			},
+			"catch": {
+				Name: "catch",
+				Description: "Tries to catch a pokemon",
+				Callback: pokeapi.CommandCatch,
+			},
+			"inspect": {
+				Name: "inspect",
+				Description: "Shows info of a pokemon",
+				Callback: pokeapi.CommandInspect,
+			},
+			"pokedex": {
+				Name: "pokedex",
+				Description: "Shows all the pokemon you've caught",
+				Callback: pokeapi.CommandPokedex,
+			},
 		},
 		Cache: cache,
+		Pokedex: map[string]pokeapi.PokeCatch{},
 	}
 
 	replLoop(&config)
